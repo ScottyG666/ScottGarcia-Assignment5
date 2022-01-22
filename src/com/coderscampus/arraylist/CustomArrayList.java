@@ -28,30 +28,46 @@ public class CustomArrayList<T> implements CustomList<T> {
 			indexForNextArrayAddition += 1;
 			return true;
 		} else {
-
 			return false;
 		}
 	}
 
 	private void growCurrentArray() {
-
-		Object[] placeHolderArray = new Object[currentCapactiy];
-		for (int i = 0; i < this.items.length - 1; i++) {
-			placeHolderArray[i] = this.items[i];
-
+		Integer count1 = 0;
+		
+		Integer count2 = 0;
+		
+		Object[] placeHolder = new Object[currentCapactiy];
+		
+		for (Object element : this.items) {
+			placeHolder[count1] = element;
+			count1+=1;
 		}
-
 		currentCapactiy *= DOUBLE_CAPACITY;
-		items = new Object[currentCapactiy];
-		for (int i = 0; i < placeHolderArray.length - 1; i++) {
-			items[i] = placeHolderArray[i];
+		this.items = new Object[currentCapactiy];
+		
+		for (Object element : placeHolder) {
+			this.items[count2] = element;
+			count2+=1;
 		}
+		
+//
+//		Object[] placeHolderArray = new Object[currentCapactiy];
+//		for (int i = 0; i < this.items.length - 1; i++) {
+//			placeHolderArray[i] = this.items[i];
+//		}
+//
+//		currentCapactiy *= DOUBLE_CAPACITY;
+//		items = new Object[currentCapactiy];
+//		for (int i = 0; i < placeHolderArray.length - 1; i++) {
+//			items[i] = placeHolderArray[i];
+//		}
 
 	}
 
 	@Override
 	public int getSize() {
-		// this number also works for the size of the array, as the array first array is
+		// this number also works for the size of the array, as the first element of the array is
 		// indexed 0, not 1
 		return indexForNextArrayAddition;
 	}
